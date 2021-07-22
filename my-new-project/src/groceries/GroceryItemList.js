@@ -1,28 +1,30 @@
 import GroceryItem from "./GroceryItem";
 import './GroceryItemList.css';
 
-function GroceryItemList() {
-  const groceryList = [
-    {
-      date:'19.02.2021',
-      title:'Carne',
-      price:10
-    },
-    {
-      date:'19.05.2021',
-      title:'Legume',
-      price:20
-    }
-  ];
+function GroceryItemList(props) {
 
   return (
     <div className="grocery-item-list">
-      <GroceryItem title={groceryList[0].title}
-                   date={groceryList[0].date}
-                   price={groceryList[0].price}/>
-      <GroceryItem title={groceryList[1].title}
-                   date={groceryList[1].date}
-                   price={groceryList[1].price}/>
+      { props.groceryList.length === 0 &&
+        <p>Please insert something</p>}
+      { props.groceryList.length > 0 && (
+        props.groceryList.map((groceryItem) => (
+          <GroceryItem
+            key={groceryItem.key}
+            title={groceryItem.title}
+            price={groceryItem.price}
+            date={groceryItem.date} />
+        ))
+      )
+      }
+
+
+      {/*<GroceryItem title={props.groceryList[0].title}*/}
+      {/*             date={props.groceryList[0].date}*/}
+      {/*             price={props.groceryList[0].price}/>*/}
+      {/*<GroceryItem title={props.groceryList[1].title}*/}
+      {/*             date={props.groceryList[1].date}*/}
+      {/*             price={props.groceryList[1].price}/>*/}
     </div>
   )
 }
