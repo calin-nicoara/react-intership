@@ -1,9 +1,22 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function NewGroceryItem(props) {
   const[enteredTitle, setEnteredTitle] = useState('');
   const[enteredPrice, setEnteredPrice] = useState('');
   const[enteredDate, setEnteredDate] = useState('');
+
+  useEffect(() => {
+    console.log("Show each time state is changed!");
+  });
+
+  useEffect(() => {
+    console.log("Show one time!");
+  }, []);
+
+  useEffect(() => {
+    console.log("Change title!");
+    return () => console.log("Cleaning title!");
+  }, [enteredTitle]);
 
   // const[userInput, setUserInput] = useState({
   //   enteredTitle: '',

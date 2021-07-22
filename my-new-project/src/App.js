@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import GroceryItemList from "./groceries/GroceryItemList";
 import Card from "./UI/Card";
 import NewGroceryItem from "./groceries/NewGroceryItem";
+import FragmentExample from "./fragment/FragmentExample";
+import NewGroceryItemUsingRef from "./groceries/NewGroceryItemUsingRef";
 
 const groceryList = [
   {
@@ -36,7 +38,9 @@ function App() {
       <Card>
         <GroceryItemList groceryList={groceryItems}/>
         <NewGroceryItem onSubmitGrocery={onSubmitGroceryHandler}/>
+        {/*<NewGroceryItemUsingRef onSubmitGrocery={onSubmitGroceryHandler}/>*/}
       </Card>
+      {/*<FragmentExample />*/}
     </div>
   );
 }
