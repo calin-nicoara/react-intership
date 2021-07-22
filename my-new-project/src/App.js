@@ -5,6 +5,7 @@ import Card from "./UI/Card";
 import NewGroceryItem from "./groceries/NewGroceryItem";
 import FragmentExample from "./fragment/FragmentExample";
 import NewGroceryItemUsingRef from "./groceries/NewGroceryItemUsingRef";
+import ExampleClassComponent from "./class-components/ExampleClassComponent";
 
 const groceryList = [
   {
@@ -39,6 +40,7 @@ function App() {
         <GroceryItemList groceryList={groceryItems}/>
         <NewGroceryItem onSubmitGrocery={onSubmitGroceryHandler}/>
         {/*<NewGroceryItemUsingRef onSubmitGrocery={onSubmitGroceryHandler}/>*/}
+        <ExampleClassComponent value1="NEW VALUE"/>
       </Card>
       {/*<FragmentExample />*/}
     </div>

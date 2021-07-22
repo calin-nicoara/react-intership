@@ -12,23 +12,28 @@ export default function NewUserForm({onCreateUser}) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    console.log("Checking username and age...");
-    const errors = [];
+    const identifier = setTimeout(() => {
+      console.log("Checking username and age...");
+      const errors = [];
 
-    if(formIsTouched) {
-      if(username.trim().length === 0) {
-        errors.push("Username must have at least one non-empty character!")
-        setUsernameNotValid(true);
-      } else {
-        setUsernameNotValid(false);
+      if(formIsTouched) {
+        if(username.trim().length === 0) {
+          errors.push("Username must have at least one non-empty character!")
+          setUsernameNotValid(true);
+        } else {
+          setUsernameNotValid(false);
+        }
+
+        if(age < 13) {
+          errors.push("Age less than 13!")
+        }
       }
 
-      if(age < 13) {
-        errors.push("Age less than 13!")
-      }
-    }
+      setErrorMessage(errors.length === 0 ? null : errors.join(", "));
+    }, 500)
 
-    setErrorMessage(errors.length === 0 ? null : errors.join(", "));
+    return () => clearTimeout(identifier);
+
   }, [username, age, formIsTouched])
 
   function onUsernameChangeHandler(event) {
