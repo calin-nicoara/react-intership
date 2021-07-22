@@ -1,0 +1,19 @@
+.grocery-item {
+    margin-bottom: 30px;
+}
+
+.grocery-item__date {
+    display: inline;
+    padding-right: 20px;
+}
+
+.grocery-item__title {
+    display: inline;
+    padding-right: 20px;
+    font-weight: bold;
+}
+
+.grocery-item__price {
+    display: inline;
+    padding-right: 20px;
+}
