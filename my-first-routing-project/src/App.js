@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
+      <nav className="nav-parent">
         <ul className="nav">
           <li className="nav-item"><NavLink className="nav-link" activeClassName="active-link" to="/dashboard">
             Dashboard
@@ -36,26 +36,28 @@ function App() {
           </NavLink></li>
         </ul>
       </nav>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to="/dashboard"/>
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/products" exact>
-          <ProductList products={products} />
-        </Route>
-        <Route path="/products/:productId">
-          <ProductDetail products={products} />
-        </Route>
-        {/*<Route path="*">*/}
-        {/*  <Redirect to="/dashboard"/>*/}
-        {/*</Route>*/}
-        <Route path="*">
-          <NotFound />
-        </Route>
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/dashboard"/>
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/products" exact>
+            <ProductList products={products} />
+          </Route>
+          <Route path="/products/:productId">
+            <ProductDetail products={products} />
+          </Route>
+          {/*<Route path="*">*/}
+          {/*  <Redirect to="/dashboard"/>*/}
+          {/*</Route>*/}
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }
