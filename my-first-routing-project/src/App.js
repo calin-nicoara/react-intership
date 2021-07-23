@@ -3,8 +3,9 @@ import {NavLink, Route} from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
+import {useState} from "react";
 
-const products = [
+const initialProducts = [
   {
     id: 1,
     name: "Poiana",
@@ -20,6 +21,8 @@ const products = [
 ]
 
 function App() {
+  const [products, setProducts] = useState(initialProducts);
+
   return (
     <div className="App">
       <h1>My APP!</h1>
@@ -37,10 +40,10 @@ function App() {
         <Dashboard />
       </Route>
       <Route path="/products">
-        <ProductList />
+        <ProductList products={products} />
       </Route>
       <Route path="/product-details/:productId">
-        <ProductDetail />
+        <ProductDetail products={products} />
       </Route>
     </div>
   );

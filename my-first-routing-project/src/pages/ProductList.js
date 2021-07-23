@@ -1,13 +1,13 @@
 
-export default function ProductList() {
+export default function ProductList(prop) {
 
   return (
     <div>
       <h2>This is the product page</h2>
       <ul>
-        <li>Product 1</li>
-        <li>Product 2</li>
-        <li>Product 3</li>
+        {
+          prop.products.map(product => <li key={product.id}>{product.name}</li>)
+        }
       </ul>
     </div>
   )
