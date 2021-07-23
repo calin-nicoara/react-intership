@@ -7,6 +7,7 @@ import FragmentExample from "./fragment/FragmentExample";
 import NewGroceryItemUsingRef from "./groceries/NewGroceryItemUsingRef";
 import ExampleClassComponent from "./class-components/ExampleClassComponent";
 import AuthContext from "./context/AuthContext";
+import DemoForMemo from "./optimization/DemoForMemo";
 
 const groceryList = [
   {
@@ -24,6 +25,7 @@ const groceryList = [
 ];
 
 function App() {
+  const [propForDemoForMemo, setPropForDemoForMemo] = useState("initial")
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [groceryItems, setGroceryItems] = useState(groceryList);
@@ -44,6 +46,10 @@ function App() {
     setIsLoggedIn(false);
   }
 
+  function onChangeDemo() {
+    setPropForDemoForMemo("Random string");
+  }
+
   return (
     <AuthContext.Provider
       value = { {
@@ -53,6 +59,8 @@ function App() {
     >
       <div className="App">
         <h1>Hello world!</h1>
+        <DemoForMemo propEx={propForDemoForMemo}/>
+        <button onClick={onChangeDemo}>CHANGE DEMO</button>
         <Card>
           <GroceryItemList groceryList={groceryItems}/>
           <NewGroceryItem onSubmitGrocery={onSubmitGroceryHandler}/>
