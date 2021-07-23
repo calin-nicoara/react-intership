@@ -6,6 +6,7 @@ import ProductDetail from "./pages/ProductDetail";
 import {useState} from "react";
 import NotFound from "./pages/NotFound";
 import NewProductForm from "./pages/NewProductForm";
+import TestingCustomHooks from "./pages/TestingCustomHooks";
 
 const initialProducts = [
   {
@@ -42,6 +43,9 @@ function App() {
           <li className="nav-item"><NavLink className="nav-link" activeClassName="active-link" to="/products">
             Products
           </NavLink></li>
+          <li className="nav-item"><NavLink className="nav-link" activeClassName="active-link" to="/test-hooks">
+            Test hooks
+          </NavLink></li>
         </ul>
       </nav>
       <div className="container">
@@ -60,6 +64,9 @@ function App() {
           </Route>
           <Route path="/products/:productId">
             <ProductDetail products={products} />
+          </Route>
+          <Route path="/test-hooks">
+            <TestingCustomHooks />
           </Route>
           {/*<Route path="*">*/}
           {/*  <Redirect to="/dashboard"/>*/}

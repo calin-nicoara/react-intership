@@ -26,7 +26,7 @@ export default function ProductList(prop) {
     history.push({
       // pathname: routeMatch.url
       pathname: location.pathname,
-      search: `?sort=" + (${isAscendingSort ? "desc" : "asc"}`
+      search: "?sort=" + (isAscendingSort ? "desc" : "asc")
     })
   }
 
