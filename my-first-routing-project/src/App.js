@@ -5,6 +5,7 @@ import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import {useState} from "react";
 import NotFound from "./pages/NotFound";
+import NewProductForm from "./pages/NewProductForm";
 
 const initialProducts = [
   {
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/products" exact>
             <ProductList products={products} />
+          </Route>
+          <Route path="/products/new-product" exact>
+            <NewProductForm />
           </Route>
           <Route path="/products/:productId">
             <ProductDetail products={products} />

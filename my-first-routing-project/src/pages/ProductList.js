@@ -29,6 +29,9 @@ export default function ProductList(prop) {
       <h2>Product Page</h2>
       <button className="btn btn-primary"
           onClick={sortProductsHandle}>Sort my products</button>
+      <Link className="btn btn-outline-primary" to="/products/new-product">
+        Create new product
+      </Link>
       <ul>
         {
           sortedProducts.map(product =>
