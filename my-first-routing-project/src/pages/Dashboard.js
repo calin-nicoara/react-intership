@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 export default function Dashboard() {
   return (
     <div>
-      <h2>This is my dashboard</h2>
+      <h2>Dashboard</h2>
       <ul>
         <li>Item 1</li>
         <li>Item 2</li>

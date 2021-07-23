@@ -26,13 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>My APP!</h1>
       <nav>
-        <ul>
-          <li><NavLink activeClassName="active-link" to="/dashboard">
+        <ul className="nav">
+          <li className="nav-item"><NavLink className="nav-link" activeClassName="active-link" to="/dashboard">
             Dashboard
           </NavLink></li>
-          <li><NavLink activeClassName="active-link" to="/products">
+          <li className="nav-item"><NavLink className="nav-link" activeClassName="active-link" to="/products">
             Products
           </NavLink></li>
         </ul>
