@@ -6,6 +6,7 @@ import NewGroceryItem from "./groceries/NewGroceryItem";
 import FragmentExample from "./fragment/FragmentExample";
 import NewGroceryItemUsingRef from "./groceries/NewGroceryItemUsingRef";
 import ExampleClassComponent from "./class-components/ExampleClassComponent";
+import AuthContext from "./context/AuthContext";
 
 const groceryList = [
   {
@@ -23,6 +24,8 @@ const groceryList = [
 ];
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [groceryItems, setGroceryItems] = useState(groceryList);
 
   function onSubmitGroceryHandler(newGroceryItem) {
@@ -33,17 +36,33 @@ function App() {
     })
   }
 
+  function onLogInHandler() {
+    setIsLoggedIn(true);
+  }
+
+  function onLogoutHandler() {
+    setIsLoggedIn(false);
+  }
+
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
-      <Card>
-        <GroceryItemList groceryList={groceryItems}/>
-        <NewGroceryItem onSubmitGrocery={onSubmitGroceryHandler}/>
-        {/*<NewGroceryItemUsingRef onSubmitGrocery={onSubmitGroceryHandler}/>*/}
-        <ExampleClassComponent value1="NEW VALUE"/>
-      </Card>
-      {/*<FragmentExample />*/}
-    </div>
+    <AuthContext.Provider
+      value = { {
+        isLoggedIn: isLoggedIn,
+        logOut: onLogoutHandler
+      } }
+    >
+      <div className="App">
+        <h1>Hello world!</h1>
+        <Card>
+          <GroceryItemList groceryList={groceryItems}/>
+          <NewGroceryItem onSubmitGrocery={onSubmitGroceryHandler}/>
+          {/*<NewGroceryItemUsingRef onSubmitGrocery={onSubmitGroceryHandler}/>*/}
+          <ExampleClassComponent value1="NEW VALUE"/>
+          <button onClick={onLogInHandler}>Log In</button>
+        </Card>
+        {/*<FragmentExample />*/}
+      </div>
+    </AuthContext.Provider>
   );
 }
 

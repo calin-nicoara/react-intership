@@ -1,6 +1,9 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import AuthContext from "../context/AuthContext";
 
 export default function NewGroceryItem(props) {
+  const authContext = useContext(AuthContext);
+
   const[enteredTitle, setEnteredTitle] = useState('');
   const[enteredPrice, setEnteredPrice] = useState('');
   const[enteredDate, setEnteredDate] = useState('');
@@ -69,6 +72,10 @@ export default function NewGroceryItem(props) {
     setEnteredPrice('');
   }
 
+  function onLogoutHandler() {
+    authContext.logOut();
+  }
+
   return (
     <form onSubmit={submitHandler}>
       <div className={`title-input-control ${true ? 'invalid': ''}`}>
@@ -93,6 +100,8 @@ export default function NewGroceryItem(props) {
       <button type="submit">
         Submit new item!
       </button>
+
+      <button type="button" onClick={onLogoutHandler}>Logout</button>
     </form>
   )
 }
