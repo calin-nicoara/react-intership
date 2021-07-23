@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import GroceryItemList from "./groceries/GroceryItemList";
 import Card from "./UI/Card";
 import NewGroceryItem from "./groceries/NewGroceryItem";
@@ -50,6 +50,11 @@ function App() {
     setPropForDemoForMemo("Random string");
   }
 
+  const onHandleCallFromParent = useCallback(function () {
+    console.log("FROM THE PARENT");
+    console.log("SHOW PROP FOR DEMO:" + propForDemoForMemo);
+  }, [propForDemoForMemo]);
+
   return (
     <AuthContext.Provider
       value = { {
@@ -59,7 +64,7 @@ function App() {
     >
       <div className="App">
         <h1>Hello world!</h1>
-        <DemoForMemo propEx={propForDemoForMemo}/>
+        <DemoForMemo propEx={propForDemoForMemo} callFromParent={onHandleCallFromParent}/>
         <button onClick={onChangeDemo}>CHANGE DEMO</button>
         <Card>
           <GroceryItemList groceryList={groceryItems}/>

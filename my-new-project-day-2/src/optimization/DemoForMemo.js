@@ -1,6 +1,9 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
-export default function DemoForMemo(props) {
+const DemoForMemo = function (props) {
+
+  console.log("DEMO FOR MEMO RUNNING!");
+
   const [state1, setState1] =  useState("1");
   const [state2, setState2] =  useState("2");
 
@@ -9,8 +12,10 @@ export default function DemoForMemo(props) {
   });
 
   function onChangeStateValuesHandler() {
-    setState1("New 1");
-    setState2("New 2");
+    // setState1("New 1");
+    // setState2("New 2");
+
+    props.callFromParent();
   }
 
   return (
@@ -24,3 +29,5 @@ export default function DemoForMemo(props) {
     </div>
   )
 }
+
+export default React.memo(DemoForMemo);
