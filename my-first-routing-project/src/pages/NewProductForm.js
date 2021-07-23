@@ -1,6 +1,10 @@
 import {useState} from "react";
+import {Prompt} from "react-router-dom";
 
-export default function NewProductForm() {
+export default function NewProductForm(props) {
+
+  //TODO finish validation, add on blur for each field
+
   const [enteredName, setEnteredName] = useState('');
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
@@ -9,6 +13,12 @@ export default function NewProductForm() {
 
   const enteredProductNameIsInvalid = enteredNameTouched && enteredName.trim().length === 0;
   const enterProductPriceIsInvalid = enteredPrice < 10;
+
+  let formIsInvalid = true;
+
+  if(!enteredProductNameIsInvalid && !enterProductPriceIsInvalid) {
+    formIsInvalid = false;
+  }
 
   function onNameChangedHandler(event) {
     setEnteredName(event.target.value);
@@ -30,17 +40,29 @@ export default function NewProductForm() {
   function onSubmitHandler(event) {
     event.preventDefault();
 
+    if(formIsInvalid) {
+      return;
+    }
+
     const newProduct = {
+      id: Math.random(),
       name: enteredName,
       description: enteredDescription,
       price: enteredPrice
     }
 
     console.log(newProduct);
+
+    props.onNewProduct(newProduct);
   }
 
   return (
     <div>
+      <Prompt
+        when={false}
+        message={(location) => "Are you sure? You will lose all your data!"
+        }
+      />
       <form onSubmit={onSubmitHandler}>
         <div className="mb-3">
           <label htmlFor="productName" className="form-label">Product name</label>
@@ -66,7 +88,9 @@ export default function NewProductForm() {
                  className="form-control" id="productPrice" />
           {enterProductPriceIsInvalid && <p>Please enter a valid price greater or equal than 10</p>}
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit"
+                // disabled={formIsInvalid}
+                className="btn btn-primary">Submit</button>
       </form>
     </div>
   )

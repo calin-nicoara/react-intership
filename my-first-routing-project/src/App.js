@@ -25,6 +25,13 @@ const initialProducts = [
 function App() {
   const [products, setProducts] = useState(initialProducts);
 
+  function onNewProductHandler(newProduct) {
+    setProducts([
+      ...products,
+      newProduct
+    ]);
+  }
+
   return (
     <div className="App">
       <nav className="nav-parent">
@@ -49,7 +56,7 @@ function App() {
             <ProductList products={products} />
           </Route>
           <Route path="/products/new-product" exact>
-            <NewProductForm />
+            <NewProductForm onNewProduct={onNewProductHandler}/>
           </Route>
           <Route path="/products/:productId">
             <ProductDetail products={products} />

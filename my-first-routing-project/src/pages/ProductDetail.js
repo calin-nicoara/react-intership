@@ -1,8 +1,11 @@
-import {useParams} from 'react-router-dom';
+import {useParams, useRouteMatch} from 'react-router-dom';
 import "./ProductList";
 
 export default function ProductDetail(props) {
   const params = useParams();
+  const routerMatch = useRouteMatch();
+
+  console.log("ROUTE MATCH:", routerMatch);
 
   const currentProduct = props.products.find(product => product.id === +params.productId)
 

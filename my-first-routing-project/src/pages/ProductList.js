@@ -1,4 +1,4 @@
-import {Link, useHistory, useLocation} from "react-router-dom";
+import {Link, useHistory, useLocation, useRouteMatch} from "react-router-dom";
 
 function sortProducts(products, isAscendingSort) {
   return products.sort((productA, productB) => {
@@ -13,6 +13,7 @@ function sortProducts(products, isAscendingSort) {
 export default function ProductList(prop) {
   const history = useHistory();
   const location = useLocation();
+  const routeMatch = useRouteMatch();
 
   const queryParams = new URLSearchParams(location.search);
 
@@ -21,7 +22,12 @@ export default function ProductList(prop) {
   const sortedProducts = sortProducts(prop.products, isAscendingSort);
 
   function sortProductsHandle() {
-    history.push("/products?sort=" + (isAscendingSort ? "desc" : "asc"));
+    // history.push(routeMatch.path + "?sort=" + (isAscendingSort ? "desc" : "asc"));
+    history.push({
+      // pathname: routeMatch.url
+      pathname: location.pathname,
+      search: `?sort=" + (${isAscendingSort ? "desc" : "asc"}`
+    })
   }
 
   return (
