@@ -27,8 +27,10 @@ function App() {
   const [products, setProducts] = useState(initialProducts);
 
   function onNewProductHandler(newProduct) {
+    const overrideProducts = products.filter(product => product.id !== newProduct.id);
+
     setProducts([
-      ...products,
+      ...overrideProducts,
       newProduct
     ]);
   }
@@ -61,6 +63,9 @@ function App() {
           </Route>
           <Route path="/products/new-product" exact>
             <NewProductForm onNewProduct={onNewProductHandler}/>
+          </Route>
+          <Route path="/products/:productId/edit">
+            <NewProductForm products={products} onNewProduct={onNewProductHandler}/>
           </Route>
           <Route path="/products/:productId">
             <ProductDetail products={products} />

@@ -1,15 +1,25 @@
 import {useState} from "react";
-import {Prompt} from "react-router-dom";
+import {Prompt, useLocation, useParams} from "react-router-dom";
 
 export default function NewProductForm(props) {
 
+  const isAddForm =  props.products === undefined;
+  const params = useParams();
+
+  let currentProduct = null;
+
+  if(!isAddForm) {
+    const productId = +params.productId;
+    currentProduct = props.products.find(product => product.id === +params.productId);
+  }
+
   //TODO finish validation, add on blur for each field
 
-  const [enteredName, setEnteredName] = useState('');
+  const [enteredName, setEnteredName] = useState(currentProduct ? currentProduct.name:'');
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
 
-  const [enteredDescription, setEnteredDescription] = useState('');
-  const [enteredPrice, setEnteredPrice] = useState('');
+  const [enteredDescription, setEnteredDescription] = useState(currentProduct ? currentProduct.description: '');
+  const [enteredPrice, setEnteredPrice] = useState(currentProduct ? currentProduct.price: '');
 
   const enteredProductNameIsInvalid = enteredNameTouched && enteredName.trim().length === 0;
   const enterProductPriceIsInvalid = enteredPrice < 10;
@@ -45,7 +55,7 @@ export default function NewProductForm(props) {
     }
 
     const newProduct = {
-      id: Math.random(),
+      id: currentProduct ? currentProduct.id : Math.random(),
       name: enteredName,
       description: enteredDescription,
       price: enteredPrice
