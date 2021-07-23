@@ -1,20 +1,37 @@
-import {Link, useHistory} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 
+function sortProducts(products, isAscendingSort) {
+  return products.sort((productA, productB) => {
+    if(isAscendingSort) {
+      return productA.name > productB.name ? 1: -1;
+    } else {
+      return productA.name > productB.name ? -1: 1;
+    }
+  });
+}
 
 export default function ProductList(prop) {
-
   const history = useHistory();
+  const location = useLocation();
 
-  function goToDetailsPage() {
-    history.push("/products/1");
+  const queryParams = new URLSearchParams(location.search);
+
+  const isAscendingSort =  queryParams.get("sort") === "asc";
+
+  const sortedProducts = sortProducts(prop.products, isAscendingSort);
+
+  function sortProductsHandle() {
+    history.push("/products?sort=" + (isAscendingSort ? "desc" : "asc"));
   }
 
   return (
     <div>
       <h2>Product Page</h2>
+      <button className="btn btn-primary"
+          onClick={sortProductsHandle}>Sort my products</button>
       <ul>
         {
-          prop.products.map(product =>
+          sortedProducts.map(product =>
             <div className="card" key={product.id}>
               <div className="card-body">
                 <div className="row">
