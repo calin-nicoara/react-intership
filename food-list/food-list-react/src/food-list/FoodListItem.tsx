@@ -6,7 +6,7 @@ export default function FoodListItem(props: any) {
     const [currentName, setCurrentName] = useState(props.name);
 
     useEffect(() => {
-        console.log("Current name:", currentName);
+        // console.log("Current name:", currentName);
     }, [currentName]);
 
     function onChangeTitleHandler(event: any) {
