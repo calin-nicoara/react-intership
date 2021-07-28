@@ -24,7 +24,13 @@ export default function FoodList() {
 
     return (
         <div className="food-list row gx-5">
-            {foodList.map(foodItem => <FoodListItem />)}
+            {foodList.map(foodItem => <FoodListItem
+                key={foodItem.id}
+                itemId={foodItem.id}
+                name={foodItem.name}
+                description={foodItem.description}
+                imageLink={foodItem.image}
+            />)}
         </div>
     )
 }
